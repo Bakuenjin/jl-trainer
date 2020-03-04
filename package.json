@@ -1,0 +1,20 @@
+{
+  "name": "jl-trainer",
+  "version": "0.0.1",
+  "description": "A discord bot for learning japanese",
+  "main": "./out/index.js",
+  "author": "Julian Zameit",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc && node ."
+  },
+  "dependencies": {
+    "discord.js": "^12.0.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "@types/mysql": "^2.15.9",
+    "@types/node": "^13.7.7",
+    "@types/ws": "^7.2.2"
+  }
+}
