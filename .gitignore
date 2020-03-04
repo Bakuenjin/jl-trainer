@@ -63,5 +63,5 @@ typings/
 #output directory
 out/
 
-# hiding bot configuration for obvious reasons
+# hiding configurations for obvious reasons
 settings.json
