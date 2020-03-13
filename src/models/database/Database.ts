@@ -22,7 +22,7 @@ export default class Database {
 
     public connect(): Promise<void> {
         return new Promise((resolve, reject) => {
-            MongoClient.connect(settings.host, (err, client) => {
+            MongoClient.connect(settings.url, (err, client) => {
                 if (err) reject(err)
                 else {
                     this.init(client)
