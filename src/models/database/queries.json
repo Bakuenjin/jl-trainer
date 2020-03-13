@@ -1,8 +1,0 @@
-{
-    "lectionNamesByUserId": "SELECT name FROM lections WHERE lections.snowflake = ?",
-    "lectionBySnowflakeAndName": "SELECT * FROM lections WHERE lections.snowflake = ? AND lections.name = ?",
-    "wordsByLectionId": "SELECT * FROM words WHERE words.lection_id = ?",
-    "wordById": "SELECT * FROM words WHERE words.id = ?",
-    "translationsByWordId": "SELECT * FROM translations WHERE translations.word_id = ?",
-    "wordStatisticByWordId": "SELECT * FROM statistics WHERE statistics.word_id = ?"
-}
