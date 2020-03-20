@@ -24,23 +24,23 @@ export default class DatabaseDeleteHandler extends DatabaseHandler {
         await this.deleteOne<DbLection>(collections.lections, { name, snowflake })
     }
 
-    public async wordById(id: number): Promise<void> {
+    public async wordById(id: string): Promise<void> {
         await this.deleteOne<DbWord>(collections.words, { id })
     }
 
-    public async translationById(id: number): Promise<void> {
+    public async translationById(id: string): Promise<void> {
         await this.deleteOne<DbTranslation>(collections.translations, { id })
     }
 
-    public async wordStatisticByWordId(wordId: number): Promise<void> {
+    public async wordStatisticByWordId(wordId: string): Promise<void> {
         await this.deleteOne<DbStatistic>(collections.statistics, { word_id: wordId })
     }
 
-    public async wordsByLectionId(lectionId: number): Promise<void> {
+    public async wordsByLectionId(lectionId: string): Promise<void> {
         await this.delete<DbWord>(collections.words, { lection_id: lectionId })
     }
 
-    public async translationsByWordId(wordId: number): Promise<void> {
+    public async translationsByWordId(wordId: string): Promise<void> {
         await this.delete<DbTranslation>(collections.translations, { word_id: wordId })
     }
 
