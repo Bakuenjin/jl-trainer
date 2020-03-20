@@ -10,7 +10,7 @@ const moduleManager = ModuleManager.getInstance()
 
 async function login() {
     await client.login(settingsManager.token)
-    await db.connect()
+    await db.connect(settingsManager.mongoConfig)
     console.log(`${client.user ? client.user.tag : 'Bot' } connected!`)
     moduleManager.setupModules(settingsManager.modules)
 }

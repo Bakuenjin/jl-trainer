@@ -3,6 +3,11 @@ import Module from '../bot-modules/Module.js'
 import CommandManagerModule from '../bot-modules/modules/CommandManagerModule.js'
 import Command from '../bot-commands/Command.js'
 
+type MongoConfig = {
+    url: string,
+    database: string
+}
+
 class SettingsManager {
 
     private static _instance: SettingsManager
@@ -15,6 +20,7 @@ class SettingsManager {
 
     public readonly token: string = settings.discord.token
     public readonly prefix: string = settings.discord.prefix
+    public readonly mongoConfig: MongoConfig = settings.mongodb
 
     public readonly modules: Module[] = [
         new CommandManagerModule()
