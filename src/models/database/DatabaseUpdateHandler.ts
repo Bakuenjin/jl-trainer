@@ -16,18 +16,18 @@ export default class DatabaseUpdateHandler extends DatabaseHandler {
     }
 
     public async lectionNameByNameAndSnowflake(snowflake: Snowflake, oldName: string, newName: string): Promise<void> {
-        await this.update<DbLection>(collections.lections, { name: oldName, snowflake: snowflake }, { name: name })
+        await this.update<DbLection>(collections.lections, { name: oldName, snowflake: snowflake }, { name: newName })
     }
 
-    public async wordById(id: number, changes: DbPartial<DbWord>): Promise<void> {
+    public async wordById(id: string, changes: DbPartial<DbWord>): Promise<void> {
         await this.update<DbWord>(collections.words, { id }, changes)
     }
 
-    public async translationById(id: number, changes: DbPartial<DbTranslation>): Promise<void> {
+    public async translationById(id: string, changes: DbPartial<DbTranslation>): Promise<void> {
         await this.update<DbTranslation>(collections.translations, { id }, changes)
     }
 
-    public async statisticByWordId(wordId: number, changes: DbPartial<DbStatistic>): Promise<void> {
+    public async statisticByWordId(wordId: string, changes: DbPartial<DbStatistic>): Promise<void> {
         await this.update<DbStatistic>(collections.statistics, { word_id: wordId }, changes)
     }
 

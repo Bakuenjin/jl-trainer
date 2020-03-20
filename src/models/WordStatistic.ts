@@ -1,13 +1,14 @@
-export default class WordStatistic {
+import Identifiable from "./Identifiable"
 
-    public readonly id: number
-    public readonly wordId: number
+export default class WordStatistic extends Identifiable {
+
+    public readonly wordId: string
     public readonly correctAmount: number
     public readonly wrongAMount: number
     public readonly totalAmount: number
 
-    constructor(id: number, wordId: number, correctAmount: number, wrongAmount: number, totalAmount: number) {
-        this.id = id
+    constructor(wordId: string, correctAmount: number, wrongAmount: number, totalAmount: number, id?: string) {
+        super(id)
         this.wordId = wordId
         this.correctAmount = correctAmount
         this.wrongAMount = wrongAmount

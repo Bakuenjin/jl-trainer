@@ -1,14 +1,14 @@
 import TranslationType from "./TranslationType"
+import Identifiable from "./Identifiable"
 
-export default class Translation {
+export default class Translation extends Identifiable {
 
-    public readonly id: number
-    public readonly wordId: number
+    public readonly wordId: string
     public readonly type: TranslationType
     public readonly content: string
 
-    constructor(id: number, wordId: number, type: TranslationType, content: string) {
-        this.id = id
+    constructor(wordId: string, type: TranslationType, content: string, id?: string) {
+        super(id)
         this.wordId = wordId
         this.type = type
         this.content = content

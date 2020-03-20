@@ -31,25 +31,25 @@ export default class DatabaseFindHandler extends DatabaseHandler {
         return results.map(result => result.name)
     }
 
-    public async wordsByLectionId(lectionId: number): Promise<WordPreview[]> {
+    public async wordsByLectionId(lectionId: string): Promise<WordPreview[]> {
         const results = await this.find<DbWord>(collections.words, { lection_id: lectionId })
-        return results.map(result => new WordPreview(result.id, result.title))
+        return results.map(result => new WordPreview(result.title, result.id))
     }
 
-    public async translationsByWordId(wordId: number): Promise<Translation[]> {
+    public async translationsByWordId(wordId: string): Promise<Translation[]> {
         const results = await this.find<DbTranslation>(collections.translations, { word_id: wordId })
-        return results.map(result => new Translation(result.id, result.word_id, result.type_id, result.content))
+        return results.map(result => new Translation(result.word_id, result.type_id, result.content, result.id))
     }
 
-    public async wordStatisticByWordId(wordId: number): Promise<WordStatistic | null> {
+    public async wordStatisticByWordId(wordId: string): Promise<WordStatistic | null> {
         const res = await this.findOne<DbStatistic>(collections.statistics, { word_id: wordId })
         if (!res)
             return null
         
-        return new WordStatistic(res.id, res.word_id, res.correct_amount, res.wrong_amount, res.total_amount)
+        return new WordStatistic(res.word_id, res.correct_amount, res.wrong_amount, res.total_amount, res.id)
     }
 
-    public async wordById(id: number): Promise<Word | null> {
+    public async wordById(id: string): Promise<Word | null> {
         const res = await this.findOne<DbWord>(collections.words, { id })
         if (!res)
             return null
@@ -57,7 +57,7 @@ export default class DatabaseFindHandler extends DatabaseHandler {
         const translations = await this.translationsByWordId(res.id)
         const nativeTranslations = translations.filter(isNativeTranslation)
         const foreignTranslations = translations.filter(isForeignTranslation)
-        return new Word(res.id, res.lection_id, res.title, res.native_tip, res.foreign_tip, nativeTranslations, foreignTranslations)
+        return new Word(res.lection_id, res.title, res.native_tip, res.foreign_tip, nativeTranslations, foreignTranslations, res.id)
     }
 
     public async lectionByNameAndSnowflake(name: string, snowflake: Snowflake): Promise<Lection | null> {
@@ -66,7 +66,7 @@ export default class DatabaseFindHandler extends DatabaseHandler {
             return null
         
         const words = await this.wordsByLectionId(res.id)
-        return new Lection(res.id, res.snowflake, res.name, words)
+        return new Lection(res.snowflake, res.name, words, res.id)
     }
 
 }

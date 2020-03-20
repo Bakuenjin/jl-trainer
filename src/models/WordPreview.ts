@@ -1,10 +1,11 @@
-export default class WordPreview {
+import Identifiable from "./Identifiable"
 
-    public readonly id: number
+export default class WordPreview extends Identifiable {
+
     public readonly title: string
 
-    constructor(id: number, title: string) {
-        this.id = id
+    constructor(title: string, id?: string) {
+        super(id)
         this.title = title
     }
 
