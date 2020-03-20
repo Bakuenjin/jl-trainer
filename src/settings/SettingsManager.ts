@@ -2,6 +2,7 @@ import settings from './settings.json'
 import Module from '../bot-modules/Module.js'
 import CommandManagerModule from '../bot-modules/modules/CommandManagerModule.js'
 import Command from '../bot-commands/Command.js'
+import LectionAddCommand from '../bot-commands/commands/LectionAddCommand'
 
 type MongoConfig = {
     url: string,
@@ -27,7 +28,7 @@ class SettingsManager {
     ]
 
     public readonly commands: Command[] = [
-        
+        new LectionAddCommand()
     ]
 
 }
