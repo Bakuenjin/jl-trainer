@@ -4,6 +4,7 @@ import SettingsManager from "../../settings/SettingsManager";
 
 import { Message } from 'discord.js'
 import convertMsgToActivatedCommand from "../../utils/convert-msg-to-activated-command";
+import validArguments from "../../utils/valid-arguments";
 
 export default class CommandManagerModule extends Module {
 
@@ -34,6 +35,11 @@ export default class CommandManagerModule extends Module {
         const command: Command = CommandManagerModule._commands[activatedCommand.name]
         if (!command)
             return
+        
+        if (!validArguments(activatedCommand.args, command.arguments)) {
+            msg.channel.send('Invalid arguments. Use the \'help\' argument to find additional information about the commands.')
+            return
+        }
         
         console.log(`Command '${activatedCommand.name}' activated!`)
         command.execute(activatedCommand)
