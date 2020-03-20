@@ -2,9 +2,10 @@ import Module from "../Module";
 import Command from "../../bot-commands/Command";
 import SettingsManager from "../../settings/SettingsManager";
 
-import { Message } from 'discord.js'
+import { Message, PartialMessage } from 'discord.js'
 import convertMsgToActivatedCommand from "../../utils/convert-msg-to-activated-command";
 import validArguments from "../../utils/valid-arguments";
+import { client } from "../..";
 
 export default class CommandManagerModule extends Module {
 
@@ -27,7 +28,7 @@ export default class CommandManagerModule extends Module {
         CommandManagerModule._commands[command.name] = command
     }
 
-    private handleMessage(msg: Message): void {
+    private handleMessage(msg: Message | PartialMessage): void {
         const activatedCommand = convertMsgToActivatedCommand(msg, this._prefix)
         if (!activatedCommand)
             return
@@ -37,7 +38,7 @@ export default class CommandManagerModule extends Module {
             return
         
         if (!validArguments(activatedCommand.args, command.arguments)) {
-            msg.channel.send('Invalid arguments. Use the \'help\' argument to find additional information about the commands.')
+            activatedCommand.reply('Invalid arguments. Use the \`help\` command to find additional information about the commands.')
             return
         }
         
@@ -46,7 +47,7 @@ export default class CommandManagerModule extends Module {
     }
 
     private observeMessages(): void {
-        // client
+        client.on('message', (msg) => this.handleMessage(msg))
     }
 
 }

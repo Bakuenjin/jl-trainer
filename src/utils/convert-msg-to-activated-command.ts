@@ -1,10 +1,13 @@
-import { Message } from "discord.js";
+import { Message, PartialMessage } from "discord.js";
 import ActivatedCommand from "../models/ActivatedCommand";
 
 /**
  * Checks and converts the message into an instance of the ActivatedCommand class.
  */
-export default function convertMsgToActivatedCommand(msg: Message, prefix: string): ActivatedCommand | undefined {
+export default function convertMsgToActivatedCommand(msg: Message | PartialMessage, prefix: string): ActivatedCommand | undefined {
+    if (!msg.content)
+        return
+
     // Check if the message starts with the specified prefix.
     if (!msg.content.startsWith(prefix))
         return
