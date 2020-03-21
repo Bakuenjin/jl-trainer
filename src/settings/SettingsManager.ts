@@ -5,6 +5,7 @@ import Command from '../bot-commands/Command.js'
 import LectionAddCommand from '../bot-commands/commands/lection/LectionAddCommand'
 import LectionListCommand from '../bot-commands/commands/lection/LectionListCommand'
 import LectionRenameCommand from '../bot-commands/commands/lection/LectionRenameCommand'
+import LectionRemoveCommand from '../bot-commands/commands/lection/LectionRemoveCommand'
 
 type MongoConfig = {
     url: string,
@@ -32,7 +33,8 @@ class SettingsManager {
     public readonly commands: Command[] = [
         new LectionAddCommand(),
         new LectionListCommand(),
-        new LectionRenameCommand()
+        new LectionRenameCommand(),
+        new LectionRemoveCommand()
     ]
 
 }
