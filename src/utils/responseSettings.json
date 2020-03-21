@@ -1,0 +1,19 @@
+{
+    "templates": {
+        "lectionAlreadyExists": "A lection with the name \"**$LECTION_NAME**\" already exists.",
+        "lectionCreated": "Lection \"**$LECTION_NAME**\" created.",
+        "lectionListTip": "Use the command `$LECTION_LIST_COMMAND` to view a list of your lections.",
+        "lectionList": "The list of all lections associated with your user:\n$LECTION_NAMES",
+        "emptyLectionList": "You currently don't have any lections. Try adding one with the `$LECTION_ADD_COMMAND` command.",
+        "lectionNotFound": "No lection with the name \"**$LECTION_NAME**\" found.",
+        "lectionRenameSuccess": "Successfully renamed lection from \"**$OLD_LECTION_NAME**\" to \"**$NEW_LECTION_NAME**\""
+    },
+    "palceholders": {
+        "lectionName": "$LECTION_NAME",
+        "lectionNames": "$LECTION_NAMES",
+        "lectionListCommand": "$LECTION_LIST_COMMAND",
+        "lectionAddCommand": "$LECTION_ADD_COMMAND",
+        "oldLectionName": "$OLD_LECTION_NAME",
+        "newLectionName": "$NEW_LECTION_NAME"
+    }
+}
