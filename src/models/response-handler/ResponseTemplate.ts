@@ -5,7 +5,10 @@ enum ResponseTemplate {
     LectionList = 'lectionList',
     EmptyLectionList = 'emptyLectionList',
     LectionNotFound = 'lectionNotFound',
-    LectionRenameSuccess = 'lectionRenameSuccess'
+    LectionRenameSuccess = 'lectionRenameSuccess',
+    LectionRemoveQuestion = 'lectionRemoveQuestion',
+    LectionRemoveSuccess = 'lectionRemoveSuccess',
+    LectionRemoveDenied = 'lectionRemoveDenied'
 }
 
 export default ResponseTemplate

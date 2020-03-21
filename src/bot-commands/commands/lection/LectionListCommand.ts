@@ -2,9 +2,7 @@ import Command from "../../Command";
 import ArgumentSpecification from "../../../models/ArgumentSpecification";
 import ActivatedCommand from "../../../models/ActivatedCommand";
 import { db } from "../../..";
-import { responseHandler } from "../../../utils/ResponseHandler";
-import ResponseTemplate from "../../../utils/ResponseTemplate";
-import ResponsePlaceholder from "../../../utils/ResponsePlaceholder";
+import { responseHandler } from "../../../models/response-handler/ResponseHandler";
 
 export default class LectionListCommand extends Command {
 

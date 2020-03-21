@@ -1,7 +1,7 @@
 import ResponsePlaceholder from './ResponsePlaceholder'
 import responseSettings from './responseSettings.json'
 import ResponseTemplate from './ResponseTemplate'
-import { replacePatternList } from './replace-utils'
+import { replacePatternList } from '../../utils/replace-utils'
 
 type ReplacementRule = {
     from: string,
@@ -22,45 +22,63 @@ class ResponseHandler {
 
     public createLectionAlreadyExistsResponse(lectionName: string): string {
         return this.createResponse(ResponseTemplate.LectionAlreadyExists, { replacementRules: [
-            { from: responseSettings.palceholders[ResponsePlaceholder.LectionName], to: lectionName }
+            { from: responseSettings.placeholders[ResponsePlaceholder.LectionName], to: lectionName }
         ]})
     }
 
     public createLectionCreatedResponse(lectionName: string): string {
         return this.createResponse(ResponseTemplate.LectionCreated, { replacementRules: [
-            { from: responseSettings.palceholders[ResponsePlaceholder.LectionName], to: lectionName }
+            { from: responseSettings.placeholders[ResponsePlaceholder.LectionName], to: lectionName }
         ]})
     }
 
     public createLectionListTipResponse(): string {
         return this.createResponse(ResponseTemplate.LectionListTip, { replacementRules: [
-            { from: responseSettings.palceholders[ResponsePlaceholder.LectionListCommand], to: 'lection-list' }
+            { from: responseSettings.placeholders[ResponsePlaceholder.LectionListCommand], to: 'lection-list' }
         ]})
     }
 
     public createLectionListResponse(lectionNames: string[]): string {
         return this.createResponse(ResponseTemplate.LectionList, { replacementRules: [
-            { from: responseSettings.palceholders[ResponsePlaceholder.LectionNames], to: `\t - **${lectionNames.join('**\n\t - **')}**` }
+            { from: responseSettings.placeholders[ResponsePlaceholder.LectionNames], to: `\t - **${lectionNames.join('**\n\t - **')}**` }
         ]})
     }
 
     public createEmptyLectionListResponse(): string {
         return this.createResponse(ResponseTemplate.EmptyLectionList, { replacementRules: [
-            { from: responseSettings.palceholders[ResponsePlaceholder.LectionAddCommand], to: 'lection-add' }
+            { from: responseSettings.placeholders[ResponsePlaceholder.LectionAddCommand], to: 'lection-add' }
         ]})
     }
 
     public createLectionNotFoundResponse(lectionName: string): string {
         return this.createResponse(ResponseTemplate.LectionNotFound, { replacementRules: [
-            { from: responseSettings.palceholders[ResponsePlaceholder.LectionName], to: lectionName }
+            { from: responseSettings.placeholders[ResponsePlaceholder.LectionName], to: lectionName }
         ]})
     }
 
     public createLectionRenameSuccessResponse(oldName: string, newName: string): string {
         return this.createResponse(ResponseTemplate.LectionRenameSuccess, { replacementRules: [
-            { from: responseSettings.palceholders[ResponsePlaceholder.OldLectionName], to: oldName },
-            { from: responseSettings.palceholders[ResponsePlaceholder.NewLectionName], to: newName }
+            { from: responseSettings.placeholders[ResponsePlaceholder.OldLectionName], to: oldName },
+            { from: responseSettings.placeholders[ResponsePlaceholder.NewLectionName], to: newName }
         ]})
+    }
+
+    public createLectionRemoveQuestionResponse(lectionName: string): string {
+        return this.createResponse(ResponseTemplate.LectionRemoveQuestion, { replacementRules: [
+            { from: responseSettings.placeholders[ResponsePlaceholder.LectionName], to: lectionName }
+        ]})
+    }
+
+    public createLectionRemoveSuccessResponse(lectionName: string): string {
+        return this.createResponse(ResponseTemplate.LectionRemoveSuccess, { replacementRules: [
+            { from: responseSettings.placeholders[ResponsePlaceholder.LectionName], to: lectionName }
+        ] })
+    }
+
+    public createLectionRemoveDeniedResponse(lectionName: string): string {
+        return this.createResponse(ResponseTemplate.LectionRemoveDenied, { replacementRules: [
+            { from: responseSettings.placeholders[ResponsePlaceholder.LectionName], to: lectionName }
+        ] })
     }
 
 }

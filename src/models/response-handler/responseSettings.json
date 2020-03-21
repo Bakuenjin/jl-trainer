@@ -6,9 +6,12 @@
         "lectionList": "The list of all lections associated with your user:\n$LECTION_NAMES",
         "emptyLectionList": "You currently don't have any lections. Try adding one with the `$LECTION_ADD_COMMAND` command.",
         "lectionNotFound": "No lection with the name \"**$LECTION_NAME**\" found.",
-        "lectionRenameSuccess": "Successfully renamed lection from \"**$OLD_LECTION_NAME**\" to \"**$NEW_LECTION_NAME**\""
+        "lectionRenameSuccess": "Successfully renamed lection from \"**$OLD_LECTION_NAME**\" to \"**$NEW_LECTION_NAME**\"",
+        "lectionRemoveQuestion": "Lection \"**$LECTION_NAME**\" will be removed irreversible. Are you sure?",
+        "lectionRemoveSuccess": "Lection \"**$LECTION_NAME**\" was successfully removed.",
+        "lectionRemoveDenied": "Lection \"**$LECTION_NAME**\" was not removed."
     },
-    "palceholders": {
+    "placeholders": {
         "lectionName": "$LECTION_NAME",
         "lectionNames": "$LECTION_NAMES",
         "lectionListCommand": "$LECTION_LIST_COMMAND",

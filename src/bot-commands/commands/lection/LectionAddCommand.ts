@@ -3,9 +3,7 @@ import ArgumentSpecification from "../../../models/ArgumentSpecification";
 import ActivatedCommand from "../../../models/ActivatedCommand";
 import { db } from "../../..";
 import Lection from "../../../models/Lection";
-import { responseHandler } from "../../../utils/ResponseHandler";
-import ResponseTemplate from "../../../utils/ResponseTemplate";
-import ResponsePlaceholder from "../../../utils/ResponsePlaceholder";
+import { responseHandler } from "../../../models/response-handler/ResponseHandler";
 
 export default class LectionAddCommand extends Command {
     
