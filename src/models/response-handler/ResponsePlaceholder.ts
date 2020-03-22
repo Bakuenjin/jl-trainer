@@ -4,7 +4,8 @@ enum ResponsePlaceholder {
     LectionListCommand = 'lectionListCommand',
     LectionAddCommand = 'lectionAddCommand',
     OldLectionName = 'oldLectionName',
-    NewLectionName = 'newLectionName'
+    NewLectionName = 'newLectionName',
+    WordTitle = 'wordTitle'
 }
 
 export default ResponsePlaceholder

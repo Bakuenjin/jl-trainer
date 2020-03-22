@@ -8,7 +8,8 @@ enum ResponseTemplate {
     LectionRenameSuccess = 'lectionRenameSuccess',
     LectionRemoveQuestion = 'lectionRemoveQuestion',
     LectionRemoveSuccess = 'lectionRemoveSuccess',
-    LectionRemoveDenied = 'lectionRemoveDenied'
+    LectionRemoveDenied = 'lectionRemoveDenied',
+    WordCreated = 'wordCreated'
 }
 
 export default ResponseTemplate
