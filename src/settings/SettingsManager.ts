@@ -2,10 +2,12 @@ import settings from './settings.json'
 import Module from '../bot-modules/Module.js'
 import CommandManagerModule from '../bot-modules/modules/CommandManagerModule.js'
 import Command from '../bot-commands/Command.js'
-import LectionAddCommand from '../bot-commands/commands/lection/LectionAddCommand'
+import LectionCreateCommand from '../bot-commands/commands/lection/LectionCreateCommand'
 import LectionListCommand from '../bot-commands/commands/lection/LectionListCommand'
 import LectionRenameCommand from '../bot-commands/commands/lection/LectionRenameCommand'
 import LectionRemoveCommand from '../bot-commands/commands/lection/LectionRemoveCommand'
+import WordCreateCommand from '../bot-commands/commands/word/WordCreateCommand'
+import SelectLectionCommand from '../bot-commands/commands/select/SelectLectionCommand'
 
 type MongoConfig = {
     url: string,
@@ -31,7 +33,8 @@ class SettingsManager {
     ]
 
     public readonly commands: Command[] = [
-        new LectionAddCommand(),
+        new SelectLectionCommand(),
+        new LectionCreateCommand(),
         new LectionListCommand(),
         new LectionRenameCommand(),
         new LectionRemoveCommand()

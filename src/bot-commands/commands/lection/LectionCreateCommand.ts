@@ -5,10 +5,10 @@ import { db } from "../../..";
 import Lection from "../../../models/Lection";
 import { responseHandler } from "../../../models/response-handler/ResponseHandler";
 
-export default class LectionAddCommand extends Command {
+export default class LectionCreateCommand extends Command {
     
-    public readonly name: string = 'lection-add'
-    public readonly description: string = 'The command adds a new lection to the users list of lections. Important: If the specified name is already in use, the creation is cancelled.'
+    public readonly name: string = 'lection-create'
+    public readonly description: string = 'The command creates a new lection and adds it to the users list of lections. Important: If the specified name is already in use, the creation is cancelled.'
     public readonly arguments: ArgumentSpecification[] = [
         new ArgumentSpecification('name', 'The name of the lection', true)
     ]
@@ -28,7 +28,7 @@ export default class LectionAddCommand extends Command {
             return
         }
 
-        const newLection = new Lection(snowflake, name, [])
+        const newLection = new Lection(snowflake, name)
         await db.insert.lection(newLection)
 
         const response = responseHandler.createLectionCreatedResponse(name)
