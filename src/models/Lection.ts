@@ -9,7 +9,7 @@ export default class Lection extends Identifiable {
     public readonly name: string
     public readonly words: WordPreview[]
 
-    constructor(snowflake: Snowflake, name: string, words: WordPreview[], id?: string) {
+    constructor(snowflake: Snowflake, name: string, words: WordPreview[] = [], id?: string) {
         super(id)
         this.snowflake = snowflake
         this.name = name

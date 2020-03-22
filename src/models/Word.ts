@@ -10,7 +10,7 @@ export default class Word extends Identifiable {
     public readonly nativeTranslation: Translation[]
     public readonly foreignTranslation: Translation[]
 
-    constructor(lectionId: string, title: string, nativeTip: string, foreignTip: string, nativeTranslation: Translation[], foreignTranslation: Translation[], id?: string) {
+    constructor(lectionId: string, title: string, nativeTip: string = '', foreignTip: string = '', nativeTranslation: Translation[] = [], foreignTranslation: Translation[] = [], id?: string) {
         super(id)
         this.lectionId = lectionId
         this.title = title
