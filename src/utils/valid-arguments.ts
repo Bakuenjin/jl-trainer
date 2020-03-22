@@ -1,8 +1,7 @@
 import ArgumentSpecification from "../models/ArgumentSpecification";
 
 function validArgumentsLength(args: string[], specs: ArgumentSpecification[]): boolean {
-    return args.length >= specs.filter(spec => spec.required).length &&
-        args.length <= specs.length
+    return args.length >= specs.filter(spec => spec.required).length
 }
 
 export default function validArguments(args: string[], specs: ArgumentSpecification[]): boolean {
