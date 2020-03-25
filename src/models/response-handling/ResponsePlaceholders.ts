@@ -5,7 +5,8 @@ enum ResponsePlaceholders {
     LectionCreateCommand = '$LECTION_CREATE_COMMAND',
     OldLectionName = '$OLD_LECTION_NAME',
     NewLectionName = '$NEW_LECTION_NAME',
-    WordTitle = '$WORD_TITLE'
+    WordTitle = '$WORD_TITLE',
+    TranslationContent = '$TRANSLATION_CONTENT'
 }
 
 export default ResponsePlaceholders
