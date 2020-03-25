@@ -3,7 +3,7 @@ import ArgumentSpecification from "../../../models/ArgumentSpecification"
 import ActivatedCommand from "../../../models/ActivatedCommand"
 import SelectionManager from "../../../models/SelectionManager"
 import { db } from "../../.."
-import { responseHandler } from "../../../models/response-handler/ResponseHandler"
+import { lectionNotFoundResponse, lectionSelectedResponse } from "../../../models/response-handling/ResponseList"
 
 export default class SelectLectionCommand extends Command {
 
@@ -25,7 +25,7 @@ export default class SelectLectionCommand extends Command {
         const lection = await db.find.lectionByNameAndSnowflake(name, snowflake)
 
         if (!lection) {
-            const response = responseHandler.createLectionNotFoundResponse(name)
+            const response = lectionNotFoundResponse.buildResponse({ lectionName: name })
             activatedCommand.reply(response)
             return
         }
@@ -33,7 +33,7 @@ export default class SelectLectionCommand extends Command {
         this._selectionManager.clear(snowflake)
         this._selectionManager.select(snowflake, 'lection', lection)
 
-        const response = responseHandler.generateResponse('lectionSelected', ['$LECTION_NAME'], [name])
+        const response = lectionSelectedResponse.buildResponse({ lectionName: name })
         activatedCommand.reply(response)
     }  
 

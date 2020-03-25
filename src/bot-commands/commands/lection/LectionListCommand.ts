@@ -2,7 +2,7 @@ import Command from "../../Command";
 import ArgumentSpecification from "../../../models/ArgumentSpecification";
 import ActivatedCommand from "../../../models/ActivatedCommand";
 import { db } from "../../..";
-import { responseHandler } from "../../../models/response-handler/ResponseHandler";
+import { lectionListResponse, emptyLectionListResponse } from "../../../models/response-handling/ResponseList";
 
 export default class LectionListCommand extends Command {
 
@@ -18,8 +18,8 @@ export default class LectionListCommand extends Command {
         const names = await db.find.lectionNamesBySnowflake(snowflake)
 
         const response = names.length ? 
-            responseHandler.createLectionListResponse(names) :
-            responseHandler.createEmptyLectionListResponse()
+            lectionListResponse.buildResponse({ lectionNames: names }) :
+            emptyLectionListResponse.buildResponse()
             
         activatedCommand.reply(response)
     }

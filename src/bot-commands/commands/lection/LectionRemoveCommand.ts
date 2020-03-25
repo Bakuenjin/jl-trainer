@@ -1,9 +1,9 @@
 import Command from "../../Command";
 import ArgumentSpecification from "../../../models/ArgumentSpecification";
 import ActivatedCommand from "../../../models/ActivatedCommand";
-import { db, client } from "../../..";
-import { responseHandler } from "../../../models/response-handler/ResponseHandler";
-import ReactionObserver from "../../../models/ReactionObserver";
+import { db } from "../../..";
+import SelectionManager from "../../../models/SelectionManager";
+import { lectionNotFoundResponse, lectionRemoveSuccessResponse } from "../../../models/response-handling/ResponseList";
 
 export default class LectionRemoveCommand extends Command {
 
@@ -13,9 +13,7 @@ export default class LectionRemoveCommand extends Command {
         new ArgumentSpecification('name', 'The name of the lection', true)
     ]
 
-    private _positiveReaction = '✔️'
-    private _negativeReaction = '❌'
-
+    private _selectionManager: SelectionManager = SelectionManager.getInstance()
 
     public async execute(activatedCommand: ActivatedCommand): Promise<void> {
         if (!activatedCommand.message.author)
@@ -27,48 +25,19 @@ export default class LectionRemoveCommand extends Command {
         const lection = await db.find.lectionByNameAndSnowflake(name, snowflake)
 
         if (!lection) {
-            const response = responseHandler.createLectionNotFoundResponse(name)
+            const response = lectionNotFoundResponse.buildResponse({ lectionName: name })
             activatedCommand.reply(response)
             return
         }
 
-        const response = responseHandler.createLectionRemoveQuestionResponse(name)
-        const responseMessage = await activatedCommand.reply(response)
+        await db.delete.lectionByNameAndSnowflake(name, snowflake)
+        const { lection: selectedLection } = this._selectionManager.get(snowflake)
 
-        if (!responseMessage)
-            return
-        
-        const reactionObserver = new ReactionObserver(client, responseMessage, [ this._positiveReaction, this._negativeReaction ])
+        if (selectedLection && selectedLection.name === name)
+            this._selectionManager.clear(snowflake)
 
-        reactionObserver.on('reactionAdd', async (reaction, user) => {
-            console.log(reaction)
-            if (user.id !== snowflake) return
-
-            if (reaction === this._positiveReaction || reaction === this._negativeReaction) {
-                reactionObserver.stop()
-                await reactionObserver.reset()
-            }
-
-            if (reaction === this._positiveReaction) {
-                await db.delete.lectionByNameAndSnowflake(name, snowflake)
-                const finalResponse = responseHandler.createLectionRemoveSuccessResponse(name)
-                responseMessage.edit(finalResponse)
-            }
-            else if (reaction === this._negativeReaction) {
-                const finalResponse = responseHandler.createLectionRemoveDeniedResponse(name)
-                responseMessage.edit(finalResponse)
-            }
-        })
-
-        console.log('reaction add callback initialized')
-
-        reactionObserver.on('observingStopped', () => {
-            console.log('observing stopped')
-            reactionObserver.reset()
-        })
-
-        await reactionObserver.initialize()
-        reactionObserver.observe({ duration: 10 })
+        const response = lectionRemoveSuccessResponse.buildResponse({ lectionName: name })
+        activatedCommand.reply(response)
     }
 
 }

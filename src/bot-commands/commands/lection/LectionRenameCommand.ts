@@ -2,7 +2,8 @@ import Command from "../../Command";
 import ArgumentSpecification from "../../../models/ArgumentSpecification";
 import ActivatedCommand from "../../../models/ActivatedCommand";
 import { db } from "../../..";
-import { responseHandler } from "../../../models/response-handler/ResponseHandler";
+import SelectionManager from "../../../models/SelectionManager";
+import { lectionAlreadyExistsResponse, lectionNotFoundResponse, lectionRenameSuccessResponse } from "../../../models/response-handling/ResponseList";
 
 export default class LectionRenameCommand extends Command {
 
@@ -12,6 +13,8 @@ export default class LectionRenameCommand extends Command {
         new ArgumentSpecification('current name', 'The current name of the lection', true),
         new ArgumentSpecification('new name', 'The new name of the lection', true)
     ]
+
+    private _selectionManager: SelectionManager = SelectionManager.getInstance()
 
     public async execute(activatedCommand: ActivatedCommand): Promise<void> {
         if (!activatedCommand.message.author)
@@ -24,7 +27,7 @@ export default class LectionRenameCommand extends Command {
         const lection = await db.find.lectionByNameAndSnowflake(currentName, snowflake)
 
         if (!lection) {
-            const response = responseHandler.createLectionNotFoundResponse(currentName)
+            const response = lectionNotFoundResponse.buildResponse({ lectionName: currentName })
             activatedCommand.reply(response)
             return
         }
@@ -32,14 +35,22 @@ export default class LectionRenameCommand extends Command {
         const newLection = await db.find.lectionByNameAndSnowflake(newName, snowflake)
 
         if (newLection) {
-            const response = responseHandler.createLectionAlreadyExistsResponse(newName)
+            const response = lectionAlreadyExistsResponse.buildResponse({ lectionName: newName })
             activatedCommand.reply(response)
             return
         }
 
         await db.update.lectionNameByNameAndSnowflake(snowflake, currentName, newName)
 
-        const response = responseHandler.createLectionRenameSuccessResponse(currentName, newName)
+        const { lection: selectedLection } = this._selectionManager.get(snowflake)
+
+        if (selectedLection && selectedLection.name === currentName) {
+            const updatedLection = await db.find.lectionByNameAndSnowflake(newName, snowflake)
+            if (updatedLection)
+                this._selectionManager.select(snowflake, 'lection', updatedLection)
+        }
+
+        const response = lectionRenameSuccessResponse.buildResponse({ oldLectionName: currentName, newLectionName: newName})
         activatedCommand.reply(response)
     }
 

@@ -3,7 +3,8 @@ import ArgumentSpecification from "../../../models/ArgumentSpecification";
 import ActivatedCommand from "../../../models/ActivatedCommand";
 import { db } from "../../..";
 import Lection from "../../../models/Lection";
-import { responseHandler } from "../../../models/response-handler/ResponseHandler";
+import { lectionAlreadyExistsResponse, lectionCreatedResponse } from '../../../models/response-handling/ResponseList'
+
 
 export default class LectionCreateCommand extends Command {
     
@@ -12,7 +13,7 @@ export default class LectionCreateCommand extends Command {
     public readonly arguments: ArgumentSpecification[] = [
         new ArgumentSpecification('name', 'The name of the lection', true)
     ]
-    
+
     public async execute(activatedCommand: ActivatedCommand): Promise<void> {
         if (!activatedCommand.message.author)
             return
@@ -23,7 +24,7 @@ export default class LectionCreateCommand extends Command {
         const existingLection = await db.find.lectionByNameAndSnowflake(name, snowflake)
 
         if (existingLection) {
-            const response = responseHandler.createLectionAlreadyExistsResponse(name)
+            const response = lectionAlreadyExistsResponse.buildResponse({ lectionName: name })
             activatedCommand.reply(response)
             return
         }
@@ -31,7 +32,7 @@ export default class LectionCreateCommand extends Command {
         const newLection = new Lection(snowflake, name)
         await db.insert.lection(newLection)
 
-        const response = responseHandler.createLectionCreatedResponse(name)
+        const response = lectionCreatedResponse.buildResponse({ lectionName: name })
         activatedCommand.reply(response)
     }
 
