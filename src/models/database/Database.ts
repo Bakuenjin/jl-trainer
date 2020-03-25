@@ -1,4 +1,4 @@
-import { MongoClient } from 'mongodb'
+import { MongoClient, MongoClientOptions, Db } from 'mongodb'
 import DatabaseFindHandler from './DatabaseFindHandler.js'
 import DatabaseInsertHandler from './DatabaseInsertHandler.js'
 import DatabaseUpdateHandler from './DatabaseUpdateHandler.js'
@@ -16,8 +16,7 @@ export default class Database {
     public update!: DatabaseUpdateHandler
     public delete!: DatabaseDeleteHandler
 
-    private init(client: MongoClient, config: MongoConfig): void {
-        const connection = client.db(config.database)
+    private init(connection: Db): void {
         this.find = new DatabaseFindHandler(connection)
         this.insert = new DatabaseInsertHandler(connection)
         this.update = new DatabaseUpdateHandler(connection)
@@ -26,10 +25,12 @@ export default class Database {
 
     public connect(config: MongoConfig): Promise<void> {
         return new Promise((resolve, reject) => {
-            MongoClient.connect(config.url, { useNewUrlParser: true }, (err, client) => {
+            const options: MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true }
+            MongoClient.connect(config.url, options, (err, client) => {
                 if (err) reject(err)
                 else {
-                    this.init(client, config)
+                    const connection = client.db(config.database)
+                    this.init(connection)
                     resolve()
                 }
             })
