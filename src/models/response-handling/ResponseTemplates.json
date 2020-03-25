@@ -1,0 +1,16 @@
+{
+    "lectionSelectedTemplate": "The lection \"**$LECTION_NAME**\" selected. This also means your previous `Word` and `Translation` selection was resetted.",
+    "lectionAlreadyExistsTemplate": "A lection with the name \"**$LECTION_NAME**\" already exists.",
+    "lectionCreatedTemplate": "Lection \"**$LECTION_NAME**\" created.",
+    "lectionListInfoTemplate": "Use the command `$LECTION_LIST_COMMAND` to view a list of your lections.",
+    "lectionListTemplate": "The list of all lections associated with your user:\n`$LECTION_NAMES`",
+    "emptyLectionListTemplate": "You currently don't have any lections. Try adding one with the `$LECTION_CREATE_COMMAND` command.",
+    "lectionNotFoundTemplate": "No lection with the name \"**$LECTION_NAME**\" found.",
+    "lectionRenameSuccessTemplate": "Successfully renamed lection from \"**$OLD_LECTION_NAME**\" to \"**$NEW_LECTION_NAME**\"",
+    "lectionRemoveQuestionTemplate": "Lection \"**$LECTION_NAME**\" will be removed irreversible. Are you sure?",
+    "lectionRemoveSuccessTemplate": "Lection \"**$LECTION_NAME**\" was successfully removed.",
+    "lectionRemoveDeniedTemplate": "Lection \"**$LECTION_NAME**\" was not removed.",
+    "wordCreatedTemplate": "Word with the title \"**$WORD_TITLE**\" created and added to the lection \"**$LECTION_NAME**\".",
+    "lectionNotSelectedTemplate": "A lection needs to be selected first, so it can be associated with the new word. You can select a lection with `select-lection` command.",
+    "wordAlreadyExistsTemplate": "A word with the title \"**$WORD_TITLE**\" already exists inside the selected lection."
+}
