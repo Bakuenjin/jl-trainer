@@ -1,4 +1,5 @@
 {
+    "invalidArgumentsTemplate": "Invalid arguments. Use the `help` command to find additional information about the commands.",
     "lectionSelectedTemplate": "The lection \"**$LECTION_NAME**\" selected. This also means your previous `Word` and `Translation` selection was resetted.",
     "lectionAlreadyExistsTemplate": "A lection with the name \"**$LECTION_NAME**\" already exists.",
     "lectionCreatedTemplate": "Lection \"**$LECTION_NAME**\" created.",

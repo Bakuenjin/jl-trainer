@@ -1,3 +1,4 @@
+import InvalidArgumentsResponse from "./responses/InvalidArgumentsResponse";
 import EmptyLectionListResponse from "./responses/EmptyLectionListResponse";
 import LectionAlreadyExistsResponse from "./responses/LectionAlreadyExistsResponse";
 import LectionCreatedResponse from "./responses/LectionCreatedResponse";
@@ -14,6 +15,7 @@ import LectionNotSelectedResponse from "./responses/LectionNotSelectedResponse";
 import WordAlreadyExistsResponse from "./responses/WordAlreadyExistsResponse";
 import CurrentSelectionInfoResponse from "./responses/CurrentSelectionInfoResponse";
 
+export const invalidArgumentsResponse =         new InvalidArgumentsResponse()
 export const emptyLectionListResponse =         new EmptyLectionListResponse()
 export const lectionAlreadyExistsResponse =     new LectionAlreadyExistsResponse()
 export const lectionCreatedResponse =           new LectionCreatedResponse()
