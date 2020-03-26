@@ -7,7 +7,7 @@ import { lectionNotFoundResponse, lectionSelectedResponse } from "../../../model
 
 export default class SelectLectionCommand extends Command {
 
-    public readonly name: string = 'select-lection'
+    public readonly name: string[] = ['select-lection', 'sl']
     public readonly description: string = 'This command selects the lection specified by name.'
     public readonly arguments: ArgumentSpecification[] = [
         new ArgumentSpecification('lection name', 'The lection that should be selected.', true)

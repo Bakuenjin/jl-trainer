@@ -6,26 +6,29 @@ import { Message, PartialMessage } from 'discord.js'
 import convertMsgToActivatedCommand from "../../utils/convert-msg-to-activated-command";
 import validArguments from "../../utils/valid-arguments";
 import { client } from "../..";
+import { invalidArgumentsResponse } from "../../models/response-handling/ResponseList";
 
 export default class CommandManagerModule extends Module {
 
-    private static _commands: { [name: string]: Command } = {}
-
-    public static getCommands(): { [name: string]: Command } {
-        return this._commands
+    private static _instance: CommandManagerModule
+    public static getInstance(): CommandManagerModule {
+        if (!this._instance)
+            this._instance = new CommandManagerModule()
+        return this._instance
     }
 
     private _prefix: string = ''
+    private _commands: Command[] = []
 
     public setup(): void {
         const settingsManager = SettingsManager.getInstance()
         this._prefix = settingsManager.prefix
-        settingsManager.commands.forEach(this.register)
+        this._commands = settingsManager.commands
         this.observeMessages()
     }
 
-    private register(command: Command): void {
-        CommandManagerModule._commands[command.name] = command
+    private findCommand(commandName: string): Command | undefined {
+        return this._commands.find(command => command.name.includes(commandName))
     }
 
     private handleMessage(msg: Message | PartialMessage): void {
@@ -33,12 +36,13 @@ export default class CommandManagerModule extends Module {
         if (!activatedCommand)
             return
         
-        const command: Command = CommandManagerModule._commands[activatedCommand.name]
+        const command = this.findCommand(activatedCommand.name)
         if (!command)
             return
         
         if (!validArguments(activatedCommand.args, command.arguments)) {
-            activatedCommand.reply('Invalid arguments. Use the \`help\` command to find additional information about the commands.')
+            const response = invalidArgumentsResponse.buildResponse()
+            activatedCommand.reply(response)
             return
         }
         

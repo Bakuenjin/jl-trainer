@@ -6,7 +6,7 @@ import { currentSelectionInfoResponse } from "../../../models/response-handling/
 
 export default class CurrentSelectionCommand extends Command {
 
-    public readonly name: string = 'current-selection'
+    public readonly name: string[] = ['current-selection', 'cs']
     public readonly description: string = 'This command shows what lection, word and translation is currently selected for editing.'
     public readonly arguments: ArgumentSpecification[] = []
 

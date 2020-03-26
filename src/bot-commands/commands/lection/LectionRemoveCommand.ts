@@ -7,7 +7,7 @@ import { lectionNotFoundResponse, lectionRemoveSuccessResponse } from "../../../
 
 export default class LectionRemoveCommand extends Command {
 
-    public readonly name: string = 'lection-remove'
+    public readonly name: string[] = ['lection-remove']
     public readonly description: string = 'The command removes the lection with the specified name.'
     public readonly arguments: ArgumentSpecification[] = [
         new ArgumentSpecification('name', 'The name of the lection', true)

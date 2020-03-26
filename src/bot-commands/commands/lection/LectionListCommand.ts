@@ -6,7 +6,7 @@ import { lectionListResponse, emptyLectionListResponse } from "../../../models/r
 
 export default class LectionListCommand extends Command {
 
-    public readonly name: string = 'lection-list'
+    public readonly name: string[] = ['lection-list', 'll']
     public readonly description: string = 'The command displays a list of lections assoziated with the user.'
     public readonly arguments: ArgumentSpecification[] = []
 

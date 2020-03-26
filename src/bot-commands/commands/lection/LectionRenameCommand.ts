@@ -7,7 +7,7 @@ import { lectionAlreadyExistsResponse, lectionNotFoundResponse, lectionRenameSuc
 
 export default class LectionRenameCommand extends Command {
 
-    public readonly name: string = 'lection-rename'
+    public readonly name: string[] = ['lection-rename', 'lr']
     public readonly description: string = 'The command displays a list of lections assoziated with the user.'
     public readonly arguments: ArgumentSpecification[] = [
         new ArgumentSpecification('current name', 'The current name of the lection', true),

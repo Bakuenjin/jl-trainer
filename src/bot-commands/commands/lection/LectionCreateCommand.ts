@@ -8,7 +8,7 @@ import { lectionAlreadyExistsResponse, lectionCreatedResponse } from '../../../m
 
 export default class LectionCreateCommand extends Command {
     
-    public readonly name: string = 'lection-create'
+    public readonly name: string[] = ['lection-create', 'lc']
     public readonly description: string = 'The command creates a new lection and adds it to the users list of lections. Important: If the specified name is already in use, the creation is cancelled.'
     public readonly arguments: ArgumentSpecification[] = [
         new ArgumentSpecification('name', 'The name of the lection', true)

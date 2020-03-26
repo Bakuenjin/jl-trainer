@@ -8,7 +8,7 @@ import { lectionNotFoundResponse, lectionNotSelectedResponse, wordAlreadyExistsR
 
 export default class WordCreateCommand extends Command {
 
-    public readonly name: string = 'word-create'
+    public readonly name: string[] = ['word-create', 'wc']
     public readonly description: string = 'This command adds a word to the specified lection.'
     public readonly arguments: ArgumentSpecification[] = [
         new ArgumentSpecification('word title', 'The title of this word. This is shown when displaying lection details', true)
