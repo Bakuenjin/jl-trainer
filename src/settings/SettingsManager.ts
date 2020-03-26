@@ -10,6 +10,7 @@ import WordCreateCommand from '../bot-commands/commands/word/WordCreateCommand'
 import SelectLectionCommand from '../bot-commands/commands/select/SelectLectionCommand'
 import CurrentSelectionCommand from '../bot-commands/commands/select/CurrentSelectionCommand'
 import LectionInfoCommand from '../bot-commands/commands/lection/LectionInfoCommand'
+import SelectWordCommand from '../bot-commands/commands/select/SelectWordCommand'
 
 type MongoConfig = {
     url: string,
@@ -37,6 +38,7 @@ class SettingsManager {
     public readonly commands: Command[] = [
         new CurrentSelectionCommand(),
         new SelectLectionCommand(),
+        new SelectWordCommand(),
         new LectionInfoCommand(),
         new LectionCreateCommand(),
         new LectionListCommand(),
