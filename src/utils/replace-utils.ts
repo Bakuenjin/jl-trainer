@@ -1,4 +1,4 @@
-type ReplaceConfig = { from: string, to: string, replaceAll?: boolean }[]
+type ReplaceConfig = { from: string, to: string, replaceAll?: boolean }
 
 export function replacePattern(text: string, from: string, to: string): string {
 	while(text.includes(from))
@@ -6,8 +6,8 @@ export function replacePattern(text: string, from: string, to: string): string {
 	return text
 }
 
-export function replacePatternList(text: string, replaceConfig: ReplaceConfig) {
-	replaceConfig.forEach(config => {
+export function replacePatternList(text: string, replaceConfigList: ReplaceConfig[]) {
+	replaceConfigList.forEach(config => {
 		const replaceAll = (typeof config.replaceAll !== 'boolean' || config.replaceAll)
         text = replaceAll ?
             replacePattern(text, config.from, config.to) :
