@@ -6,6 +6,8 @@ enum ResponsePlaceholders {
     OldLectionName = '$OLD_LECTION_NAME',
     NewLectionName = '$NEW_LECTION_NAME',
     WordTitle = '$WORD_TITLE',
+    WordTitles = '$WORD_TITLES',
+    WordsAmount = '$WORDS_AMOUNT',
     TranslationContent = '$TRANSLATION_CONTENT'
 }
 

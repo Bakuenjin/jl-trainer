@@ -1,5 +1,6 @@
 {
     "invalidArgumentsTemplate": "Invalid arguments. Use the `help` command to find additional information about the commands.",
+    "lectionInfoTemplate": "Information about lection \"**$LECTION_NAME**\":\n```\nName: $LECTION_NAME\nWords amount: $WORDS_AMOUNT\n\nWords Info:\n$WORD_TITLES\n```",
     "lectionSelectedTemplate": "The lection \"**$LECTION_NAME**\" selected. This also means your previous `Word` and `Translation` selection was resetted.",
     "lectionAlreadyExistsTemplate": "A lection with the name \"**$LECTION_NAME**\" already exists.",
     "lectionCreatedTemplate": "Lection \"**$LECTION_NAME**\" created.",
@@ -14,5 +15,6 @@
     "wordCreatedTemplate": "Word with the title \"**$WORD_TITLE**\" created and added to the lection \"**$LECTION_NAME**\".",
     "lectionNotSelectedTemplate": "A lection needs to be selected first, so it can be associated with the new word. You can select a lection with `select-lection` command.",
     "wordAlreadyExistsTemplate": "A word with the title \"**$WORD_TITLE**\" already exists inside the selected lection.",
-    "currentSelectionInfoTemplate": "Your current selections at the vocabulary-editor:\n```\nLection:     $LECTION_NAME\nWord:        $WORD_TITLE\nTranslation: $TRANSLATION_CONTENT```"
+    "currentSelectionInfoTemplate": "Your current selections at the vocabulary-editor:\n```\nLection:     $LECTION_NAME\nWord:        $WORD_TITLE\nTranslation: $TRANSLATION_CONTENT```",
+    "noArgumentAndSelectedLectionTemplate": "To show lection infos, either a lection name needs to be passed as an argument or a lection needs to be selected."
 }

@@ -14,9 +14,12 @@ import WordCreatedResponse from "./responses/WordCreatedResponse";
 import LectionNotSelectedResponse from "./responses/LectionNotSelectedResponse";
 import WordAlreadyExistsResponse from "./responses/WordAlreadyExistsResponse";
 import CurrentSelectionInfoResponse from "./responses/CurrentSelectionInfoResponse";
+import LectionInfoResponse from "./responses/LectionInfoResponse";
+import NoArgAndSelectedLectionResponse from "./responses/NoArgAndSelectedLectionResponse";
 
 export const invalidArgumentsResponse =         new InvalidArgumentsResponse()
 export const emptyLectionListResponse =         new EmptyLectionListResponse()
+export const lectionInfoResponse =              new LectionInfoResponse()
 export const lectionAlreadyExistsResponse =     new LectionAlreadyExistsResponse()
 export const lectionCreatedResponse =           new LectionCreatedResponse()
 export const lectionListInfoResponse =          new LectionListInfoResponse()
@@ -31,3 +34,4 @@ export const wordCreatedResponse =              new WordCreatedResponse()
 export const lectionNotSelectedResponse =       new LectionNotSelectedResponse()
 export const wordAlreadyExistsResponse =        new WordAlreadyExistsResponse()
 export const currentSelectionInfoResponse =     new CurrentSelectionInfoResponse()
+export const noArgAndSelectedLectionResponse =  new NoArgAndSelectedLectionResponse()
