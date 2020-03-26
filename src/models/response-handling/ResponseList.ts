@@ -16,6 +16,9 @@ import WordAlreadyExistsResponse from "./responses/WordAlreadyExistsResponse";
 import CurrentSelectionInfoResponse from "./responses/CurrentSelectionInfoResponse";
 import LectionInfoResponse from "./responses/LectionInfoResponse";
 import NoArgAndSelectedLectionResponse from "./responses/NoArgAndSelectedLectionResponse";
+import WordNotFoundResponse from "./responses/WordNotFoundResponse";
+import WordNotInSelectedLectionResponse from "./responses/WordNotInSelectedLectionResponse";
+import WordSelectedResponse from "./responses/WordSelectedResponse";
 
 export const invalidArgumentsResponse =         new InvalidArgumentsResponse()
 export const emptyLectionListResponse =         new EmptyLectionListResponse()
@@ -33,5 +36,8 @@ export const lectionSelectedResponse =          new LectionSelectedResponse()
 export const wordCreatedResponse =              new WordCreatedResponse()
 export const lectionNotSelectedResponse =       new LectionNotSelectedResponse()
 export const wordAlreadyExistsResponse =        new WordAlreadyExistsResponse()
+export const wordNotFoundResponse =             new WordNotFoundResponse()
+export const wordNotInSelectedLectionResponse = new WordNotInSelectedLectionResponse()
+export const wordSelectedResponse =             new WordSelectedResponse()
 export const currentSelectionInfoResponse =     new CurrentSelectionInfoResponse()
 export const noArgAndSelectedLectionResponse =  new NoArgAndSelectedLectionResponse()
